@@ -26,7 +26,6 @@ HabitacionesController.getHabitacion = async (req, res) => {
     });
 };
 
-
 HabitacionesController.postHabitacion = async (req, res) => {
     let habitacion = {
         numero: req.body.numero,
@@ -42,7 +41,6 @@ HabitacionesController.postHabitacion = async (req, res) => {
         }
     });
 };
-
 
 HabitacionesController.deleteHabitacion = async (req, res) => {
     const id = req.params.id;

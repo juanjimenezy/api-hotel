@@ -5,9 +5,11 @@ const server_port = 8080;
 app.use(express.json());
 
 //Routes
-const routes = require('./src/Routes/habitaciones.routes.js');
+const routesHabitaciones = require('./src/Routes/habitaciones.routes.js');
+const routesReservas = require('./src/Routes/reservas.routes.js')
 
-app.use(routes);
+app.use(routesHabitaciones);
+app.use(routesReservas);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
