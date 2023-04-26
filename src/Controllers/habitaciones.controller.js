@@ -7,6 +7,7 @@ HabitacionesController.getHabitaciones = async (req, res) => {
     await pool.query('SELECT * FROM habitaciones', (error, resultados) => {
         if (error) {
             console.error('Error al realizar la consulta:', error);
+            res.send(error);
         } else {
             console.log('Resultados:', resultados);
             res.json(resultados);
@@ -19,6 +20,7 @@ HabitacionesController.getHabitacion = async (req, res) => {
     pool.query(`SELECT * FROM habitaciones WHERE id = ${id}`, (error, resultados) => {
         if (error) {
             console.error('Error al realizar la consulta:', error);
+            res.send(error);
         } else {
             console.log('Resultados:', resultados);
             res.json(resultados);
@@ -35,6 +37,7 @@ HabitacionesController.postHabitacion = async (req, res) => {
     await pool.query('INSERT INTO habitaciones SET ?', habitacion, (error, resultado) => {
         if (error) {
             console.error('Error al ejecutar el insert:', error);
+            res.send(error);
         } else {
             console.log('Se insertó un nuevo usuario con el ID:', resultado.insertId);
             res.send(`id creado:${resultado.insertId}`);
@@ -47,6 +50,7 @@ HabitacionesController.deleteHabitacion = async (req, res) => {
     await pool.query(`DELETE FROM habitaciones WHERE id = ?`, id, (error, resultado) => {
         if (error) {
             console.error('Error al ejecutar el insert:', error);
+            res.send(error);
         } else {
             console.log('Se insertó un nuevo usuario con el ID:', resultado.insertId);
             res.send(`{${resultado.insertId}`);

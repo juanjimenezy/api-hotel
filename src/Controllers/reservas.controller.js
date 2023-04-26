@@ -7,6 +7,7 @@ ReservasController.getReservas = async (req, res) => {
     await pool.query('SELECT * FROM reservas', (error, resultados) => {
         if (error) {
             console.error('Error al realizar la consulta:', error);
+            res.send(error);
         } else {
             console.log('Resultados:', resultados);
             res.json(resultados);
@@ -20,6 +21,7 @@ ReservasController.getReserva = async (req, res) => {
     pool.query(`SELECT * FROM reservas WHERE id = ${id}`, (error, resultados) => {
         if (error) {
             console.error('Error al realizar la consulta:', error);
+            res.send(error);
         } else {
             console.log('Resultados:', resultados);
             res.json(resultados);
@@ -33,6 +35,7 @@ ReservasController.postReserva = async (req, res) => {
     await pool.query('INSERT INTO reservas SET ?', Reserva, (error, resultado) => {
         if (error) {
             console.error('Error al ejecutar el insert:', error);
+            res.send(error);
         } else {
             console.log('Se insertó un nuevo registro con el ID:', resultado.insertId);
             res.send(`id creado:${resultado.insertId}`);
@@ -45,9 +48,10 @@ ReservasController.deleteReserva = async (req, res) => {
     await pool.query(`DELETE FROM reservas WHERE id = ?`, id, (error, resultado) => {
         if (error) {
             console.error('Error al ejecutar el insert:', error);
+            res.send(error);
         } else {
             console.log('Se elimino un registro con el ID:', resultado.insertId);
-            res.send(`{${resultado.insertId}`);
+            res.send(`${resultado.insertId}`);
         }
     });
 
