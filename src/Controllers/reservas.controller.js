@@ -29,9 +29,9 @@ ReservasController.getReserva = async (req, res) => {
 };
 
 ReservasController.postReserva = async (req, res) => {
-    let Reserva = {id_habitacion: req.body.id_habitacion,nombre_cli: req.body.nombre_cli,telefono_cli: req.body.telefono_cli,
+    let reserva = {id_habitacion: req.body.id_habitacion,nombre_cli: req.body.nombre_cli,telefono_cli: req.body.telefono_cli,
                     fecha_reserva: req.body.fecha_reserva,fecha_entrada: req.body.fecha_entrada,fecha_salida: req.body.fecha_salida };
-    await pool.query('INSERT INTO reservas SET ?', Reserva, (error, resultado) => {
+    await pool.query('INSERT INTO reservas SET ?', reserva, (error, resultado) => {
         if (error) {
             console.error('Error al ejecutar el insert:', error);
             res.send(error);
@@ -44,7 +44,7 @@ ReservasController.postReserva = async (req, res) => {
 
 ReservasController.putReserva = async (req, res) => {
     const id = parseInt(req.params.id);
-    let Reserva = {id_habitacion: req.body.id_habitacion,nombre_cli: req.body.nombre_cli,telefono_cli: req.body.telefono_cli,
+    let reserva = {id_habitacion: req.body.id_habitacion,nombre_cli: req.body.nombre_cli,telefono_cli: req.body.telefono_cli,
         fecha_reserva: req.body.fecha_reserva,fecha_entrada: req.body.fecha_entrada,fecha_salida: req.body.fecha_salida };
     await pool.query(`UPDATE reservas SET ? WHERE id = ${id}`, reserva, (error, resultado) => {
         if (error) {
