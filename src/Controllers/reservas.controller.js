@@ -67,7 +67,7 @@ ReservasController.deleteReserva = async (req, res) => {
             console.error('Error al ejecutar el insert:', error);
             res.send(error);
         } else {
-            console.log('Se elimino un registro con el ID:', resultado.insertId);
+            console.log('Se elimino un registro con el ID:', resultado);
             res.send(`${resultado.insertId}`);
         }
     });
