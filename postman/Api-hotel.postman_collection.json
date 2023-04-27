@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "0d95e994-6d46-450e-a5ef-801aab32272b",
+		"name": "Api-hotel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19759110",
+		"_collection_link": "https://planetary-equinox-702992.postman.co/workspace/728845be-8647-4242-abec-1fa2ee984c6e/collection/19759110-0d95e994-6d46-450e-a5ef-801aab32272b?action=share&creator=19759110&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "habitaciones",
+			"item": [
+				{
+					"name": "habitacion",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/habitacion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"habitacion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "habitaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/habitaciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"habitaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar habitacion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\": 103,\r\n    \"tipo\": \"DOBLE\",\r\n    \"valor\": 120000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/habitacion/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"habitacion",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear habitacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\": 103,\r\n    \"tipo\": \"DOBLE\",\r\n    \"valor\": 100000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/habitacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"habitacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar habitacion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/habitacion/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"habitacion",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reservas",
+			"item": [
+				{
+					"name": "reservas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reservas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear reserva",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id_habitacion\": \"2\",\r\n        \"nombre_cli\": \"PEDRO\",\r\n        \"telefono_cli\": \"320654\",\r\n        \"fecha_reserva\": \"2023-04-26 22:18:56\",\r\n        \"fecha_entrada\": \"2023-04-26 22:19:04\",\r\n        \"fecha_salida\": \"2023-04-27 22:19:11\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar reserva",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reserva/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
