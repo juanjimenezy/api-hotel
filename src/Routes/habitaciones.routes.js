@@ -4,7 +4,8 @@ const HabitacionesController = require('../Controllers/habitaciones.controller.j
 
 router.get('/habitaciones', HabitacionesController.getHabitaciones);
 router.get('/habitacion/:id', HabitacionesController.getHabitacion);
-router.post('/habitacion', (req,res) => { HabitacionesController.postHabitacion(req,res)});
+router.post('/habitacion',HabitacionesController.postHabitacion);
+router.put('/habitacion/:id',HabitacionesController.putHabitacion);
 router.delete('/habitacion/:id', HabitacionesController.deleteHabitacion);
 
 module.exports = router;

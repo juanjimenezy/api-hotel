@@ -15,7 +15,6 @@ ReservasController.getReservas = async (req, res) => {
     });
 };
 
-
 ReservasController.getReserva = async (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(`SELECT * FROM reservas WHERE id = ${id}`, (error, resultados) => {
@@ -39,6 +38,24 @@ ReservasController.postReserva = async (req, res) => {
         } else {
             console.log('Se insertó un nuevo registro con el ID:', resultado.insertId);
             res.send(`id creado:${resultado.insertId}`);
+        }
+    });
+};
+
+ReservasController.putReserva = async (req, res) => {
+    const id = parseInt(req.params.id);
+    let reserva = {
+        numero: req.body.numero,
+        tipo: req.body.tipo,
+        valor: req.body.valor
+    };
+    await pool.query(`UPDATE reservas SET ? WHERE id = ${id}`, reserva, (error, resultado) => {
+        if (error) {
+            console.error('Error al actualizar:', error);
+            res.send(error);
+        } else {
+            console.log('Se actualizó reserva con el ID:', resultado.insertId);
+            res.send(`Se actualizó reserva con el ID:${resultado.insertId}`);
         }
     });
 };
