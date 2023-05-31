@@ -6,9 +6,11 @@ app.use(express.json());
 
 //Routes
 const routesHabitaciones = require('./src/Routes/habitaciones.routes.js');
-const routesReservas = require('./src/Routes/reservas.routes.js')
+const routesReservas = require('./src/Routes/reservas.routes.js');
+const routesLogin = require('./src/Routes/login.routes.js')
 app.use(routesHabitaciones);
 app.use(routesReservas);
+app.use(routesLogin);
 //
 
 app.use(express.urlencoded({ extended: true }))

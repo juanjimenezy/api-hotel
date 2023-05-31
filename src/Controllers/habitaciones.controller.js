@@ -22,8 +22,13 @@ HabitacionesController.getHabitacion = async (req, res) => {
             console.error('Error al realizar la consulta:', error);
             res.send(error);
         } else {
-            console.log('Resultados:', resultados);
-            res.json(resultados);
+            if(resultados.length > 0) {
+                console.log('Resultados:', resultados);
+                res.json(resultados);
+            }else{
+                res.json("No se encontró habitación.")
+            }
+            
         }
     });
 };
