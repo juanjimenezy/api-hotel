@@ -1,8 +1,14 @@
 const express = require('express');
+var cors = require('cors')
 const app = express();
 const server_port = 8080;
 
+
 app.use(express.json());
+//cors
+app.use(cors());
+app.options('*', cors()) 
+//
 
 //Routes
 const routesHabitaciones = require('./src/Routes/habitaciones.routes.js');
@@ -15,6 +21,8 @@ app.use(routesLogin);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+
 
 app.use((req,res) => {
     res.status(404).json({
