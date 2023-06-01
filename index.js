@@ -13,7 +13,13 @@ app.use(routesReservas);
 app.use(routesLogin);
 //
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+app.use((req,res) => {
+    res.status(404).json({
+        message:'Ruta no encontrada.'
+    });
+});
 
 app.listen(server_port, () => { console.log("Server Start! "); });
