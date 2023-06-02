@@ -12,11 +12,10 @@ function App() {
   return (
     <>
       <Router>
-        <HeaderComponent />
         <Routes>
           <Route path={'/'} element={<><LoginComponent /></>}></Route>
-          <Route path={'/habitaciones'} element={<><HabitacionesComponent /></>}></Route>
-          <Route path={'/reservas'} element={<><ReservasComponent /></>}></Route>
+          <Route path={'/habitaciones'} element={<><HeaderComponent /><HabitacionesComponent /></>}></Route>
+          <Route path={'/reservas'} element={<><HeaderComponent /><ReservasComponent /></>}></Route>
         </Routes>
       </Router>
     </>

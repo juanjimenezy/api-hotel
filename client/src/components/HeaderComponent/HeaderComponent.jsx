@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
+import { useNavigate } from "react-router-dom";
 
 export const HeaderComponent = () => {
+
+    const navigate = useNavigate();
+    const logout = () => {
+        localStorage.removeItem("token");
+        navigate('/');
+    }
+
     return (
         <>
         <div>
@@ -20,6 +29,7 @@ export const HeaderComponent = () => {
                         </li>
                     </ul>
                 </div>
+                <Button color='danger' onClick={() => logout()}>Salir</Button>
             </nav>
         </div>
         </>
