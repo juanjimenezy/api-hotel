@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Modal, ModalHeader, ModalBody, FormGroup, ModalFooter, Card, CardBody, CardHeader } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import { getHabitaciones, eliminarHabitacion, editarHabitacion } from './HabitacionesServices';
+import { getHabitaciones, eliminarHabitacion, editarHabitacion, crearHabitacion } from './HabitacionesServices';
 
 export const HabitacionesComponent = () => {
     const [habitaciones, setHabitaciones] = useState([]);
     const [modal, setModal] = useState(false);
     const [registro, setRegistro] = useState({ id: "", numero: "", tipo: "", valor: 0 });
+    const [error, setError] = useState({error:false, messageError:""});
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,6 +38,7 @@ export const HabitacionesComponent = () => {
 
     const modalShowHide = async (dato) => {
         setModal(!modal);
+        setError({error:false, messageError:""});
         if (dato === null) setRegistro({ id: "", numero: "", tipo: "", valor: 0 });
     }
 
@@ -46,13 +48,35 @@ export const HabitacionesComponent = () => {
     }
 
     const guardar = async (dato) => {
-        if (dato.id) {
-            const token = localStorage.getItem('token');
-            await editarHabitacion(dato.id, token, dato);
-            await getDatos(token);
-            modalShowHide("b");
+        if (validateData(dato)) {
+            var token = localStorage.getItem('token');
+            if (dato.id) {
+                await editarHabitacion(dato.id, token, dato);
+                await getDatos(token);
+                modalShowHide("b");
+            } else {
+                await crearHabitacion(token, dato);
+                await getDatos(token);
+                modalShowHide("b");
+            }
         }
-        
+    }
+
+    const validateData = (data) => {
+        if (!data.numero) {
+            setError({error:true ,messageError:"Numero de habitacion requerido!"});
+            return false;
+        }
+        if (!data.tipo) {
+            setError({error:true ,messageError:"Tipo de habitacion requerido!"});
+            return false;
+        }
+        if (!data.valor) {
+            setError({error:true ,messageError:"Valor de habitacion requerido!"});
+            return false;
+        }
+
+        return true;
     }
 
     const closeBtn = (
@@ -70,7 +94,7 @@ export const HabitacionesComponent = () => {
                             <CardHeader>
                                 <h2>Habitaciones</h2>
                                 <div style={{ textAlign: 'left' }}>
-                                    <Button color='success' onClick={() => modalShowHide(null)}>Nuevo Registro</Button>
+                                    <Button color='success' onClick={() => modalShowHide(null)}>Nueva Habitacion</Button>
                                 </div>
 
                             </CardHeader>
@@ -109,6 +133,7 @@ export const HabitacionesComponent = () => {
                 <ModalHeader close={closeBtn}>
                     {registro.id === "" ? <p>Nuevo Registro</p> : <p>Editar Registro</p>}
                 </ModalHeader>
+                {error.error=== true?<div className="alert alert-danger" role="alert">{error.messageError}</div>:<></>}
                 <ModalBody>
                     <FormGroup>
                         <label>id:</label>
