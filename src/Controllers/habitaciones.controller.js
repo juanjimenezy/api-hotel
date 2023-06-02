@@ -57,13 +57,14 @@ HabitacionesController.putHabitacion = async (req, res) => {
         tipo: req.body.tipo,
         valor: req.body.valor
     };
+    console.log(habitacion);
     await pool.query(`UPDATE habitaciones SET ? WHERE id = ${id}`, habitacion, (error, resultado) => {
         if (error) {
             console.error('Error al actualizar:', error);
             res.send(error);
         } else {
-            console.log('Se actualizó habitación con el ID:', resultado.insertId);
-            res.send(`Se actualizó habitación con el ID:${resultado.insertId}`);
+            console.log('Se actualizó habitación con el ID:', id);
+            res.send(`Se actualizó habitación con el ID:${id}`);
         }
     });
 };
@@ -75,8 +76,8 @@ HabitacionesController.deleteHabitacion = async (req, res) => {
             console.error('Error al ejecutar el insert:', error);
             res.send(error);
         } else {
-            console.log('Se eliminó habitación con el ID:', resultado.insertId);
-            res.send(`{${resultado.insertId}`);
+            console.log('Se eliminó habitación con el ID:', id);
+            res.send(`{${id}`);
         }
     });
 
