@@ -75,7 +75,6 @@ export const HabitacionesComponent = () => {
             setError({error:true ,messageError:"Valor de habitacion requerido!"});
             return false;
         }
-
         return true;
     }
 
@@ -87,7 +86,7 @@ export const HabitacionesComponent = () => {
 
     return (
         <>
-            <div >
+            <div>
                 <Container>
                     <div className='my-5 text-center'>
                         <Card>
@@ -96,16 +95,15 @@ export const HabitacionesComponent = () => {
                                 <div style={{ textAlign: 'left' }}>
                                     <Button color='success' onClick={() => modalShowHide(null)}>Nueva Habitacion</Button>
                                 </div>
-
                             </CardHeader>
                             <CardBody>
                                 <Table>
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>numero</th>
-                                            <th>tipo</th>
-                                            <th>valor</th>
+                                            <th>Id</th>
+                                            <th>Numero</th>
+                                            <th>Tipo</th>
+                                            <th>Valor</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -129,6 +127,7 @@ export const HabitacionesComponent = () => {
                     </div>
                 </Container>
             </div>
+
             <Modal isOpen={modal} className=''>
                 <ModalHeader close={closeBtn}>
                     {registro.id === "" ? <p>Nuevo Registro</p> : <p>Editar Registro</p>}
@@ -160,7 +159,6 @@ export const HabitacionesComponent = () => {
                 <ModalFooter>
                     <Button color="success" onClick={() => guardar(registro)} ><i className="bi bi-check-lg"></i></Button>
                 </ModalFooter>
-
             </Modal>
         </>
     )

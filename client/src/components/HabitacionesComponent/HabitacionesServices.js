@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getHabitaciones = async (token) => await axios.get('http://localhost:8080/habitaciones', { headers: { 'Authorization': `Bearer ${token}` } });
 export const eliminarHabitacion = async (id, token) => await axios.delete(`http://localhost:8080/habitacion/${id}`, { headers: { 'Authorization': `Bearer ${token}` } });
-export const crearHabitacion = async (token,habitacion) => await axios.post(`http://localhost:8080/habitacion`,habitacion, { headers: { 'Authorization': `Bearer ${token}` } });
+export const crearHabitacion = async (token,habitacion) => await axios.post(`http://localhost:8080/habitacion`,habitacion,{headers:{'Authorization':`Bearer ${token}`}});
 
 export const editarHabitacion = async (id, token, habitacion) => {
     console.log(habitacion);
