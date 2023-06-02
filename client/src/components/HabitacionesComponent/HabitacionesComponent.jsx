@@ -8,7 +8,7 @@ export const HabitacionesComponent = () => {
     const [habitaciones, setHabitaciones] = useState([]);
     const [modal, setModal] = useState(false);
     const [registro, setRegistro] = useState({ id: "", numero: "", tipo: "", valor: 0 });
-    const [error, setError] = useState({error:false, messageError:""});
+    const [error, setError] = useState({ error: false, messageError: "" });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export const HabitacionesComponent = () => {
 
     const modalShowHide = async (dato) => {
         setModal(!modal);
-        setError({error:false, messageError:""});
+        setError({ error: false, messageError: "" });
         if (dato === null) setRegistro({ id: "", numero: "", tipo: "", valor: 0 });
     }
 
@@ -65,17 +65,25 @@ export const HabitacionesComponent = () => {
 
     const validateData = (data) => {
         if (!data.numero) {
-            setError({error:true ,messageError:"Numero de habitacion requerido!"});
+            setError({ error: true, messageError: "Numero de habitacion requerido!" });
             return false;
         }
         if (!data.tipo) {
-            setError({error:true ,messageError:"Tipo de habitacion requerido!"});
+            setError({ error: true, messageError: "Tipo de habitacion requerido!" });
             return false;
         }
         if (!data.valor) {
-            setError({error:true ,messageError:"Valor de habitacion requerido!"});
+            setError({ error: true, messageError: "Valor de habitacion requerido!" });
             return false;
         }
+
+        const result = habitaciones.filter(habitacion => habitacion.numero.toString() === data.numero.toString());
+        console.log(result);
+        if(data.id === "" && result.length > 0){
+            setError({ error: true, messageError: "Numero de habitacion ya existe." });
+            return false;
+        }
+
         return true;
     }
 
@@ -133,7 +141,7 @@ export const HabitacionesComponent = () => {
                 <ModalHeader close={closeBtn}>
                     {registro.id === "" ? <p>Nuevo Registro</p> : <p>Editar Registro</p>}
                 </ModalHeader>
-                {error.error=== true?<div className="alert alert-danger" role="alert">{error.messageError}</div>:<></>}
+                {error.error === true ? <div className="alert alert-danger" role="alert">{error.messageError}</div> : <></>}
                 <ModalBody>
                     <FormGroup>
                         <label>id:</label>
@@ -141,7 +149,7 @@ export const HabitacionesComponent = () => {
                     </FormGroup>
                     <FormGroup>
                         <label>Numero:</label>
-                        <input className="form-control" name="numero" type="number" onChange={handleChange} value={registro.numero} required />
+                        <input className="form-control" name="numero" type="number" onChange={handleChange} value={registro.numero} disabled={registro.id} required />
                     </FormGroup>
                     <FormGroup>
                         <label>Tipo: </label>
