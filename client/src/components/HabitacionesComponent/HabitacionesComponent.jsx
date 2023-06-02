@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Modal, ModalHeader, ModalBody, FormGroup, ModalFooter, Card, CardBody, CardHeader } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { getHabitaciones, eliminarHabitacion, editarHabitacion, crearHabitacion } from './HabitacionesServices';
+import numeral from 'numeral';
 
 export const HabitacionesComponent = () => {
     const [habitaciones, setHabitaciones] = useState([]);
@@ -113,7 +114,7 @@ export const HabitacionesComponent = () => {
                                                 <td>{dato.id}</td>
                                                 <td>{dato.numero}</td>
                                                 <td>{dato.tipo}</td>
-                                                <td>{dato.valor}</td>
+                                                <td>{numeral(dato.valor).format('$0,0.00')}</td>
                                                 <td><Button className="btn-sm" color='secondary' onClick={() => editar(dato)}><i className="bi bi-pencil-square"></i></Button>
                                                     {" "}
                                                     <Button className="btn-sm" color='danger' onClick={() => eliminarH(dato.id)} ><i className="bi bi-trash"></i></Button></td>
