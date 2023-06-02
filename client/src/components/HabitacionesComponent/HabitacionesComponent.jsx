@@ -105,6 +105,7 @@ export const HabitacionesComponent = () => {
                                     <Button color='success' onClick={() => modalShowHide(null)}>Nueva Habitacion</Button>
                                 </div>
                             </CardHeader>
+                            {habitaciones.length > 0?
                             <CardBody>
                                 <Table>
                                     <thead>
@@ -131,8 +132,8 @@ export const HabitacionesComponent = () => {
                                     </tbody>
                                 </Table>
                             </CardBody>
+                            :<div className='alert alert-warning'>No hay habitaciones creadas</div>}
                         </Card>
-
                     </div>
                 </Container>
             </div>

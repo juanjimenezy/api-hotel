@@ -112,6 +112,7 @@ export const ReservasComponent = () => {
                                     <Button color='success' onClick={() => modalShowHide(null)}>Nueva Reserva</Button>
                                 </div>
                             </CardHeader>
+                            {reservas.length > 0?
                             <CardBody>
                                 <Table>
                                     <thead>
@@ -144,6 +145,7 @@ export const ReservasComponent = () => {
                                     </tbody>
                                 </Table>
                             </CardBody>
+                            :<div className='alert alert-warning'>No hay reservas creadas</div>}
                         </Card>
                     </div>
                 </Container>
